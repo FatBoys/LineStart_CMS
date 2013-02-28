@@ -1,8 +1,8 @@
-﻿drop table if exists `linestart_cms`.`survey`;
+﻿drop table if exists `51javacms`.`survey`;
 CREATE  TABLE `linestart_cms`.`survey` (  `id` INT NOT NULL AUTO_INCREMENT COMMENT '问卷id,主键' ,  `survey_name` VARCHAR(45) NOT NULL COMMENT '问卷名称,不能为空' ,  `survey_comments` VARCHAR(45) NULL COMMENT '问卷说明,可为空' ,  `create_time` DATETIME NOT NULL COMMENT '问卷创建时间' ,  `modify_time` DATETIME NOT NULL COMMENT '修改时间' ,  PRIMARY KEY (`id`) )COMMENT = '问卷表';
-drop table if exists `linestart_cms`.`question`;
+drop table if exists `51javacms`.`question`;
 CREATE  TABLE `linestart_cms`.`question` (  `question_id` INT NOT NULL AUTO_INCREMENT COMMENT '主键' ,  `servey_id` VARCHAR(45) NOT NULL COMMENT '问卷id,外键,问卷表主键' ,  `question_order` VARCHAR(45) NOT NULL COMMENT '问题在问卷中的顺序' ,  `question_name` VARCHAR(45) NOT NULL COMMENT '题干' ,  `question_type` VARCHAR(45) NOT NULL COMMENT '问题类型' ,  `create_time` DATETIME NOT NULL ,  `modify_time` DATETIME NOT NULL ,  PRIMARY KEY (`question_id`) )COMMENT = '问题表';
-drop table if exists `linestart_cms`.`option`;
+drop table if exists `51javacms`.`option`;
 CREATE  TABLE `linestart_cms`.`option` (  `option_id` INT NOT NULL AUTO_INCREMENT COMMENT '选项id,主键' ,  `question_id` VARCHAR(45) NOT NULL COMMENT '问题id' ,  `option_order` VARCHAR(45) NOT NULL COMMENT '选项在问题中的顺序' ,  `option_content` VARCHAR(45) NOT NULL COMMENT '选项内容' ,  PRIMARY KEY (`option_id`) )COMMENT = '选项表';
-drop table if exists `linestart_cms`.`answer`;
+drop table if exists `51javacms`.`answer`;
 CREATE  TABLE `linestart_cms`.`answer` (  `answer_id` INT NOT NULL AUTO_INCREMENT COMMENT '答案表id' ,  `question_id` VARCHAR(45) NOT NULL COMMENT '问题id' ,  `survey_id` VARCHAR(45) NOT NULL COMMENT '问卷id' ,  `answer_content` VARCHAR(45) NOT NULL COMMENT '选项' ,  PRIMARY KEY (`answer_id`) )COMMENT = '答案表';
