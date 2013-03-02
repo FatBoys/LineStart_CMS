@@ -42,6 +42,39 @@ public class DBTable {
 			}
 		}
 	}
+	
+		//(修改表数据；有DB事物处理操作；共用connection)
+		protected static int insertTranscation(Connection conn, Object[] args) throws Exception {
+			PreparedStatement pstm = null;
+			try {
+				pstm = conn.prepareStatement((String)args[PARAM_SQL]);
+				if(args.length == PARAM_ARGS+1){
+					Object[] params = (Object[])args[PARAM_ARGS];
+					if(params != null){
+						int i = 1;
+						for(Object e : params){
+							pstm.setObject(i++, e);
+						}
+					}
+				}
+				pstm.executeUpdate();
+				ResultSet rs = pstm.getGeneratedKeys();
+				if(rs!=null && rs.next())  
+		        {  
+		            return rs.getInt(1);//返回主键值  
+		        }  
+			} catch (SQLException e) {
+				throw new Exception(TABLE_ERROR_INFO + (String)args[PARAM_ERROR]);
+			} finally {
+				if (pstm != null) {
+					try{
+						pstm.close();
+					} catch (Exception e) {
+					}
+				}
+			}
+			return 0;
+		}
 	//(修改表数据；无DB事物处理操作)
 	protected static void update(Object[] args) throws Exception {
 		Connection conn = null;
