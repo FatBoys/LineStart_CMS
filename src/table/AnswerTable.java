@@ -5,6 +5,11 @@ import java.sql.Connection;
 import javabean.Answer;
 import table.inc.DBTable;
 
+/**
+ * 答卷表
+ * @author xmwang
+ *
+ */
 public class AnswerTable extends DBTable  {
 	
 	public static int insertAnswer(Connection conn, Answer answer) throws Exception {
